@@ -93,7 +93,7 @@
             </div>
 
             <div class="cart-actions">
-                <button id="go-to-payment-btn" class="primary-btn">Proceder al Pago</button>
+                <button id="go-to-payment-btn" class="primary-btn">Proceder a Solicitud</button>
                 <button id="clear-cart-btn" class="secondary-btn">Vaciar Carrito</button>
             </div>
         </div>
@@ -102,35 +102,30 @@
     <div id="payment-modal" class="modal">
         <div class="modal-content">
             <span class="close-payment">&times;</span>
-            <h2>Confirmar Compra</h2>
+            <h2>Confirmar Pedido / Solicitud de Cotización</h2>
 
             <div id="checkout-cart-summary">
                 <h4>Productos en tu pedido:</h4>
                 <div id="checkout-cart-items-list">
                 </div>
                 <hr>
-                <p>Total Final: <strong id="payment-modal-total">L.0.00</strong></p>
+                <p>Total Estimado: <strong id="payment-modal-total">L.0.00</strong></p>
             </div>
 
-            <input type="text" id="buyerName" placeholder="Nombre completo" required><br><br>
-            <input type="email" id="buyerEmail" placeholder="Correo electrónico (Para factura/notificación)" required><br><br>
+            <input type="text" id="buyerName" placeholder="Nombre completo" required><br>
+            <input type="email" id="buyerEmail" placeholder="Correo electrónico (Para contacto)" required><br>
 
-            <button id="pay-btn" class="primary-btn">Confirmar y Pagar L.<span id="pay-btn-total">0.00</span></button>
+            <button id="pay-btn" class="primary-btn">Confirmar y Enviar Pedido L.<span id="pay-btn-total">0.00</span></button>
         </div>
     </div>
 
-    <div id="payment-modal" class="modal">
+    <div id="product-detail-modal" class="modal">
         <div class="modal-content large-modal">
-            <span class="close-payment" onclick="closePaymentModal()">&times;</span>
-            <h2>Enviar Pedido / Solicitud de Cotización</h2>
-            <input type="text" id="buyerName" placeholder="Nombre completo"><br>
-            <input type="email" id="buyerEmail" placeholder="Correo electrónico"><br>
-
-            <button id="pay-btn" class="primary-btn">Confirmar y Pagar</button>
+            <span class="close-detail" onclick="closeProductModal()">&times;</span>
+            <div id="product-detail-content" class="detail-container">
+            </div>
         </div>
     </div>
-
-
 
     <script src="app.js"></script>
 </body>
