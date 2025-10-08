@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Dashboard - Vidriería (simulado)</title>
+<link rel="stylesheet" href="styles_cart_modal.css">
+</head>
+<body>
+<header style="padding:12px;border-bottom:1px solid #eee;">
+  <a href="index.html">Inicio</a> | <a href="products.html">Productos</a> | <a href="cart.html">Carrito</a>
+  <span style="float:right">Carrito: <span class="cart-count">0</span></span>
+</header>
+<main style="padding:16px;">
+  <div id="dashboard-root"></div>
+</main>
+
+<script src="js/cart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  renderDashboardIfPresent();
+  renderCartCount();
+});
+</script>
+</body>
+</html>

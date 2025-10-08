@@ -1,0 +1,26 @@
+
+/* Simple styles for cart drawer, modal, and floating button */
+#floating-cart-btn{
+  position:fixed; right:16px; bottom:16px; z-index:10000;
+  background:#0b74de; color:white; border:none; padding:10px 12px; border-radius:28px; font-size:16px; cursor:pointer;
+  box-shadow:0 6px 18px rgba(11,116,222,0.22);
+}
+#floating-cart-btn #cart-badge-count{ background: #ffdd00; color:#000; padding:2px 6px; border-radius:12px; margin-left:6px; font-weight:700;}
+#cart-drawer{
+  position:fixed; right:-420px; top:0; width:400px; height:100%; background:white; box-shadow:-8px 0 24px rgba(0,0,0,0.12); z-index:9999;
+  transition:right 0.28s ease; overflow:auto; padding:8px;
+}
+#cart-drawer.open{ right:0; }
+.drawer-header{ display:flex; justify-content:space-between; align-items:center; padding:8px 6px; border-bottom:1px solid #eee;}
+.drawer-body{ padding:8px; }
+.drawer-footer{ padding:8px; border-top:1px solid #eee; }
+#product-modal{ display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; padding:20px;}
+#product-modal.open{ display:flex; }
+.modal-card{ background:white; border-radius:8px; max-width:900px; width:100%; max-height:90%; overflow:auto; padding:12px; display:flex; gap:12px; }
+.modal-img{ max-width:380px; max-height:70vh; object-fit:contain; cursor:zoom-in; transition:transform .25s ease; }
+.modal-img.zoomed{ transform:scale(2); cursor:zoom-out; }
+.modal-content{ flex:1; }
+.card{ background:#fff; border:1px solid #eee; padding:12px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.04); }
+.dash-grid{ display:flex; gap:12px; flex-wrap:wrap; }
+.dash-grid .card{ flex:1 1 220px; }
+.order-row{ padding:6px 0; border-bottom:1px dashed #eee; }

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Carrito - Vidriería</title>
+    <link rel="stylesheet" href="styles_cart_modal.css">
+</head>
+
+<body>
+    <header style="padding:12px;border-bottom:1px solid #eee;">
+        <a href="index.html">Inicio</a> | <a href="products.html">Productos</a> | <a href="dashboard.html">Dashboard</a>
+        <span style="float:right">Carrito: <span class="cart-count">0</span></span>
+    </header>
+    <main style="padding:16px;">
+        <h1>Carrito</h1>
+        <div id="cart-contents" style="margin-bottom:12px;"></div>
+        <div id="order-confirmation"></div>
+        <p><button onclick="toggleCartDrawer()">Abrir drawer del carrito</button></p>
+    </main>
+    <script src="js/cart.js"></script>
+    <script>
+        function renderCartContents() {
+            const el = document.getElementById("cart-contents");
+            const cart = loadCart();
+            if (cart.length === 0) {
+                el.innerHTML = "<p>Carrito vacío.</p>";
+                return;
+            }
+            let html = "<table style='width:100%'><thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Acción</th></tr></thead><tbody>";
+            cart.forEach(it => {
+                const line = (Number(it.price) || 0) * (Number(it.qty) || 1);
+                html += `<tr><td>${it.name}</td><td>L. ${(Number(it.price)||0).toFixed(2)}</td><td><input type="number" value="${it.qty}" min="1" onchange="updateQty('${it.id}', this.value)"/></td><td>L. ${line.toFixed(2)}</td><td><button onclick="removeFromCart('${it.id}')">Eliminar</button></td></tr>`;
+            });
+            html += `</tbody></table><p><strong>Total: L. ${cart.reduce((s,it)=>s+(Number(it.price)||0)*(it.qty||1),0).toFixed(2)}</strong></p><p><button onclick="checkout()">Enviar pedido (simulado)</button></p>`;
+            el.innerHTML = html;
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            renderCartContents();
+            renderCartCount();
+        });
+    </script>
+</body>
+
+</html>
