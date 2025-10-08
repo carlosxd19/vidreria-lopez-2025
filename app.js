@@ -1,5 +1,5 @@
 // =======================================================
-// === 1. DATOS (ARREGLO DE PRODUCTOS) ====================
+// === 1. DATOS Y VARIABLES GLOBALES =======================
 // =======================================================
 
 const allProducts = [
@@ -186,7 +186,8 @@ const allProducts = [
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const cartModal = document.getElementById('cart-modal');
 const paymentModal = document.getElementById('payment-modal');
-const productDetailModal = document.getElementById('product-detail-modal'); // Modal de Detalle
+// Variable correcta para el modal de detalle
+const productDetailModal = document.getElementById('product-detail-modal');
 
 // =======================================================
 // === 2. RENDERIZADO DEL CATÁLOGO ========================
@@ -235,7 +236,7 @@ function renderProducts() {
 
 
 // =======================================================
-// === 3. FUNCIONES DE DETALLE DEL PRODUCTO ================
+// === 3. FUNCIONES DE DETALLE DEL PRODUCTO (CORREGIDAS) ===
 // =======================================================
 
 /**
@@ -260,14 +261,19 @@ window.showProductDetail = function(id) {
         </div>
     `;
 
-    productDetailModal.style.display = 'block';
+    // Muestra el modal usando la variable global correcta
+    if (productDetailModal) {
+        productDetailModal.style.display = 'block';
+    }
 };
 
 /**
  * Cierra el modal de detalle del producto.
  */
 window.closeProductModal = function() {
-    productDetailModal.style.display = 'none';
+    if (productDetailModal) {
+        productDetailModal.style.display = 'none';
+    }
 };
 
 
@@ -357,6 +363,7 @@ function renderCart() {
         cartList.innerHTML = '<p style="text-align: center; color: #888;">El carrito está vacío. ¡Añade productos!</p>';
         subtotalDisplay.innerText = 'L.0.00';
         totalDisplay.innerText = 'L.0.00';
+        // Deshabilita el botón de proceder al pago si el carrito está vacío
         document.getElementById('go-to-payment-btn').disabled = true;
         return;
     }
@@ -409,9 +416,8 @@ function updateCartUI() {
     // Actualiza el texto del botón Confirmar Pedido
     const btnPay = document.getElementById('pay-btn');
     if (btnPay) {
-        btnPay.innerText = `Confirmar Pedido L.${formattedTotal}`;
+        btnPay.innerText = `Confirmar y Enviar Pedido L.${formattedTotal}`;
     }
-
 
     renderCheckoutCart(total);
 }
@@ -438,7 +444,7 @@ function renderCheckoutCart(total) {
 
 
 // =======================================================
-// === 5. LÓGICA DE MODALES Y CONEXIÓN DE PEDIDO (MAILTO) ===
+// === 5. LÓGICA DE MODALES Y ENVÍO DE PEDIDO (MAILTO) ===
 // =======================================================
 
 const btnGoToPayment = document.getElementById('go-to-payment-btn');
@@ -460,14 +466,14 @@ document.querySelector('.close-cart').onclick = () => cartModal.style.display = 
 // Cerrar Modal de Pago
 document.querySelector('.close-payment').onclick = () => paymentModal.style.display = 'none';
 
-// Cierra cualquier modal si se hace click fuera (incluyendo el de detalle)
+// Cierra cualquier modal si se hace click fuera 
 window.onclick = (e) => {
     if (e.target == cartModal) cartModal.style.display = 'none';
     if (e.target == paymentModal) paymentModal.style.display = 'none';
     if (e.target == productDetailModal) productDetailModal.style.display = 'none';
 };
 
-// Botón "Proceder al Pedido"
+// Botón "Proceder a Solicitud"
 if (btnGoToPayment) {
     btnGoToPayment.onclick = () => {
         if (cart.length === 0) return;
@@ -487,14 +493,12 @@ if (btnClearCart) {
 // --- Lógica de Envío de Pedido (Usando mailto: SIN BACKEND) ---
 
 if (btnPay) {
-    // La función updateCartUI ya actualiza el texto del botón al cargar.
-
     btnPay.onclick = () => {
         const name = document.getElementById('buyerName').value;
         const email = document.getElementById('buyerEmail').value;
 
-        // **IMPORTANTE: Cambia esta dirección por el correo fijo de Vidriería Lopez**
-        const recipientEmail = 'carloscruz197527@gmail.com';
+        // **IMPORTANTE: Cambia esta dirección por el correo fijo de tu empresa**
+        const recipientEmail = 'vidrieria_lopez_pedidos@ejemplo.com';
 
         // 1. Validaciones
         if (!name || !email) {
