@@ -16,7 +16,6 @@ header {
     top: 0;
     width: 100%;
     background: #000;
-    /* Fondo oscuro sólido para mejor visibilidad del menú */
     color: #fff;
     padding: 10px 30px;
     z-index: 1000;
@@ -29,8 +28,9 @@ header {
     font-size: 1.5em;
     position: relative;
     font-weight: 700;
-    left: 500px;
-    top: -10px;
+    /* Ajustado para ser responsivo */
+    left: 0; 
+    top: 0;
     color: #fff;
 }
 
@@ -54,26 +54,27 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #008CBA;
-    /* Color principal de la marca en hover */
+}
+
+/* Ajustado para ser responsivo */
+#ul {
+    position: static;
 }
 
 
-/* --- CARRITO FLOTANTE (POSICIÓN IZQUIERDA) --- */
+/* --- CARRITO FLOTANTE (POSICIÓN FIJA) --- */
 
 #cart-float {
     cursor: pointer;
     background: #008CBA;
-    /* Azul */
     color: #fff;
     padding: 8px 15px;
     border-radius: 5px;
     font-weight: 700;
     transition: background 0.3s;
-    /* PROPIEDADES DE POSICIONAMIENTO */
     position: fixed;
     top: 11px;
     right: 30px;
-    /* MOVIMOS A LA DERECHA para mejor UX junto al logo */
     z-index: 1001;
 }
 
@@ -82,14 +83,12 @@ nav ul li a:hover {
 }
 
 
-/* --- SECCIÓN HERO (Banner principal) --- */
+/* --- SECCIÓN HERO --- */
 
 #hero {
     height: 90vh;
-    /* CORRECCIÓN DE RUTA: ASSESTS con doble 's' */
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/fondo1.jpg') no-repeat center/cover;
     background-attachment: fixed;
-    /* Efecto parallax */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,11 +148,6 @@ nav ul li a:hover {
     margin-bottom: 40px;
 }
 
-#ul {
-    position: relative;
-    left: 380px;
-}
-
 
 /* SECCIÓN NOSOTROS */
 
@@ -200,7 +194,7 @@ nav ul li a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin: 15px;
-    width: 280px;
+    width: 280px; /* Ancho fijo para escritorio */
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: left;
     overflow: hidden;
@@ -217,7 +211,6 @@ nav ul li a:hover {
     object-fit: cover;
     border-bottom: 1px solid #eee;
     cursor: pointer;
-    /* Indica que es clickeable */
 }
 
 .card-content {
@@ -235,7 +228,6 @@ nav ul li a:hover {
     font-size: 0.9em;
     color: #777;
     height: 60px;
-    /* Altura fija */
     overflow: hidden;
 }
 
@@ -311,8 +303,18 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+.map-image {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    border: 5px solid #008CBA;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
 
-/* --- MODALES GENERALES (Pago y Detalle) --- */
+
+/* --- MODALES GENERALES --- */
 
 .modal {
     display: none;
@@ -338,12 +340,9 @@ nav ul li a:hover {
 }
 
 .modal-content.large-modal {
-    max-width: 800px;
-}
-
-.modal-content h2 {
-    color: #008CBA;
-    margin-top: 0;
+    max-width: 800px; /* Ancho para el modal de Detalle */
+    width: 90%;
+    margin: 5% auto;
 }
 
 .modal-content input {
@@ -354,9 +353,6 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-
-/* Clases de cierre para los nuevos modales */
-
 .close-cart,
 .close-payment,
 .close-detail {
@@ -366,6 +362,12 @@ nav ul li a:hover {
     font-weight: bold;
     line-height: 1;
     transition: color 0.2s;
+    cursor: pointer;
+}
+
+.close-detail {
+    font-size: 2em;
+    line-height: 0.8;
 }
 
 .close-cart:hover,
@@ -376,22 +378,37 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-#pay-btn {
-    width: 100%;
-    background-color: #008CBA;
-    /* Color de la marca */
+.primary-btn {
+    background-color: #28a745;
     color: white;
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-#pay-btn:hover {
-    background-color: #006b99;
+.primary-btn:hover {
+    background-color: #1e7e34;
+}
+
+.secondary-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.secondary-btn:hover {
+    background-color: #c82333;
 }
 
 
-/* --- ESTILOS ADICIONALES PARA LA NUEVA FUNCIONALIDAD DE CARRITO --- */
-
-
-/* Contenedor del carrito en el modal */
+/* --- ESTILOS ESPECÍFICOS DE CARRITO --- */
 
 .cart-items-list {
     max-height: 250px;
@@ -428,9 +445,6 @@ nav ul li a:hover {
     margin: 0 10px;
 }
 
-
-/* Botones de cantidad (+ / -) */
-
 .qty-btn {
     padding: 5px 10px;
     width: 30px;
@@ -441,8 +455,8 @@ nav ul li a:hover {
     font-weight: bold;
     line-height: 1;
     cursor: pointer;
-    /* Sobreescribe estilos de botón general para botones pequeños */
     width: auto;
+    border-radius: 3px;
 }
 
 .qty-btn:hover {
@@ -462,23 +476,6 @@ nav ul li a:hover {
     color: #008CBA;
 }
 
-
-/* Botón de eliminar (x) */
-
-.secondary-btn {
-    background-color: #dc3545;
-    /* Rojo para vaciar/eliminar */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.secondary-btn:hover {
-    background-color: #c82333;
-}
-
 .qty-btn.secondary-btn {
     width: 30px;
     height: 30px;
@@ -495,7 +492,6 @@ nav ul li a:hover {
 
 .cart-summary h3 {
     color: #28a745;
-    /* Verde para el total final */
     margin-top: 5px;
 }
 
@@ -508,25 +504,7 @@ nav ul li a:hover {
 }
 
 
-/* Botón principal (Proceder al Pago) */
-
-.primary-btn {
-    background-color: #28a745;
-    /* Verde para acciones principales */
-    color: white;
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.primary-btn:hover {
-    background-color: #1e7e34;
-}
-
-
-/* ESTILOS DEL CHECKOUT/PAGO (#payment-modal) */
+/* --- ESTILOS DE CHECKOUT/PAGO (#payment-modal) --- */
 
 #checkout-cart-summary {
     background-color: #f9f9f9;
@@ -554,135 +532,7 @@ nav ul li a:hover {
 }
 
 
-/* ESTILOS PARA LA SECCIÓN DE CONTACTO (MAPA) */
-
-.map-image {
-    max-width: 800px;
-    /* Tamaño máximo para el mapa */
-    width: 100%;
-    height: auto;
-    border: 5px solid #008CBA;
-    /* Borde para destacar */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    margin-bottom: 20px;
-}
-
-
-/* --- MODAL DE VISTA DETALLADA --- */
-
-
-/* Esto hace que el modal de detalle sea más grande que el modal del carrito */
-
-.large-modal {
-    max-width: 800px;
-    /* Tamaño más ancho */
-    width: 90%;
-    margin: 5% auto;
-}
-
-.close-detail {
-    float: right;
-    font-size: 2em;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
-    line-height: 0.8;
-}
-
-.close-detail:hover {
-    color: #ff0000;
-}
-
-
-/* Contenedor flexible para la imagen y la info */
-
-.detail-container {
-    display: flex;
-    gap: 30px;
-    text-align: left;
-}
-
-.detail-image {
-    flex: 1;
-    max-width: 50%;
-}
-
-.detail-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.detail-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-}
-
-.detail-info h2 {
-    color: #008CBA;
-    margin-top: 0;
-    font-size: 2em;
-}
-
-.detail-price strong {
-    font-size: 1.5em;
-    color: #1a1a1a;
-}
-
-
-/* Control de Cantidad */
-
-.quantity-control {
-    margin: 20px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#product-qty {
-    width: 60px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.add-to-cart-detail-btn {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    background: #28a745;
-    color: white;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
-    margin-top: 10px;
-}
-
-.add-to-cart-detail-btn:hover {
-    background: #1e7e34;
-}
-
-
-/* Responsivo para el modal */
-
-@media (max-width: 768px) {
-    .detail-container {
-        flex-direction: column;
-        /* Apila la imagen y la info en móviles */
-    }
-    .detail-image {
-        max-width: 100%;
-    }
-}
-
-
-/* --- ESTILOS PARA EL MODAL DE DETALLE DE PRODUCTO --- */
+/* --- MODAL DE DETALLE DE PRODUCTO --- */
 
 #product-detail-content {
     display: flex;
@@ -701,6 +551,8 @@ nav ul li a:hover {
 
 .detail-info {
     width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .detail-info h2 {
@@ -722,7 +574,128 @@ nav ul li a:hover {
     margin: 15px 0;
 }
 
-.detail-info button {
-    margin-top: 20px;
-    /* Usa el estilo .primary-btn ya definido */
+
+/* ======================================================= */
+/* === AJUSTES DE DISEÑO RESPONSIVO (MOBILE FIRST) ======= */
+/* ======================================================= */
+
+
+/* 1. TABLETS y Móviles (Máx. 768px de ancho) */
+@media (max-width: 768px) {
+    
+    /* --- HEADER Y NAV --- */
+    
+    header {
+        padding: 10px 15px;
+        flex-direction: row; 
+        justify-content: space-between;
+    }
+
+    /* Ocultamos el menú de navegación principal en móvil */
+    nav ul {
+        display: none;
+    }
+
+    .logo {
+        font-size: 1.3em;
+    }
+    
+    #cart-float {
+        padding: 6px 10px;
+        top: 10px;
+        right: 15px;
+        font-size: 0.9em;
+    }
+
+    /* --- HERO --- */
+
+    #hero {
+        height: 70vh; /* Reducimos la altura en móvil */
+    }
+
+    .hero-title {
+        font-size: 2.5em;
+    }
+
+    .hero-subtitle {
+        font-size: 1em;
+        padding: 0 10px;
+    }
+    
+    /* --- SECCIONES GENERALES --- */
+
+    .info-section {
+        padding: 50px 5%;
+    }
+    
+    .section-heading {
+        font-size: 2em;
+    }
+
+    /* --- PRODUCTOS --- */
+    
+    .product-container {
+        /* Apila las tarjetas verticalmente */
+        flex-direction: column; 
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%; /* Las tarjetas ocupan todo el ancho */
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    /* --- SERVICIOS --- */
+
+    .container-services {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .service-card {
+        max-width: 100%;
+    }
+    
+    /* --- MODAL DETALLE DE PRODUCTO --- */
+    
+    .modal-content.large-modal {
+        max-width: 90%;
+        margin: 10% auto;
+    }
+    
+    #product-detail-content {
+        flex-direction: column; /* Apila imagen y descripción */
+        gap: 20px;
+    }
+
+    #product-detail-content img {
+        width: 100%;
+        max-height: 250px;
+    }
+    
+    .detail-info {
+        width: 100%;
+    }
+
+    .detail-info .price {
+        font-size: 1.2em;
+    }
+    
+    /* --- MODALES DE CARRITO Y PAGO --- */
+    
+    .modal-content {
+        width: 90%; 
+        max-width: 90%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .item-name {
+        font-size: 0.85em;
+    }
+
+    .item-quantity-control {
+        margin: 0 5px;
+    }
 }
