@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Productos - Vidriería</title></head>
+<body>
+<header><a href="index.html">Inicio</a> | <a href="cart.html">Carrito (<span class="cart-count">0</span>)</a></header>
+<main>
+<h1>Productos</h1>
+<div id="product-list"></div>
+
+<!-- product detail area -->
+<div id="product-detail" style="display:none;border:1px solid #ccc;padding:10px;margin-top:20px;">
+  <button id="close-detail">Cerrar</button>
+  <div id="detail-content"></div>
+</div>
+
+</main>
+<script src="js/cart.js"></script>
+<script>
+const PRODUCTS = [
+  {id: "p1", name: "Vidrio A", price: 25.00, desc: "Vidrio templado A, medidas 50x50 cm.", img: "img/vidrio-a.jpg"},
+  {id: "p2", name: "Vidrio B", price: 40.00, desc: "Vidrio laminado B, ideal para ventanas.", img: "img/vidrio-b.jpg"},
+  {id: "p3", name: "Espejo C", price: 60.00, desc: "Espejo con bisel C, 100x60 cm.", img: "img/espejo-c.jpg"}
+];
+
+function renderProducts(){
+  const el = document.getElementById("product-list");
+  let html = "<div style='display:flex;gap:12px;flex-wrap:wrap;'>";
+  PRODUCTS.forEach(p=>{
+    html += `<div style='border:1px solid #ddd;padding:10px;width:220px;'>
+      <img src="${p.img}" alt="${p.name}" style="max-width:100%;height:120px;object-fit:cover"/>
+      <h3>${p.name}</h3>
+      <p>${p.desc.substring(0,80)}...</p>
+      <p><strong>L. ${p.price.toFixed(2)}</strong></p>
+      <p>
+        <button data-product='${JSON.stringify({id:p.id,name:p.name,price:p.price})}' data-add-to-cart>Agregar</button>
+        <button onclick="viewDetail('${p.id}')">Ver detalle</button>
+      </p>
+    </div>`;
+  });
+  html += "</div>";
+  el.innerHTML = html;
+}
+
+function viewDetail(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+  const detail = document.getElementById("product-detail");
+  const content = document.getElementById("detail-content");
+  content.innerHTML = `<h2>${p.name}</h2><img src="${p.img}" style="max-width:300px"/><p>${p.desc}</p><p>Precio: L. ${p.price.toFixed(2)}</p><p><button data-product='${JSON.stringify({id:p.id,name:p.name,price:p.price})}' data-add-to-cart>Agregar al carrito</button></p>`;
+  detail.style.display = "block";
+}
+document.getElementById("close-detail").addEventListener("click", function(){ document.getElementById("product-detail").style.display="none";});
+renderProducts();
+</script>
+</body>
+</html>
