@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidriería Lopez - Soluciones en Vidrio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1 class="logo">VIDRIERÍA LOPEZ</h1>
+            <ul>
+                <li id="ul"><a href="#hero">Inicio</a></li>
+                <li id="ul"><a href="#nosotros-section">Nosotros</a></li>
+                <li id="ul"><a href="#productos-section">Productos</a></li>
+                <li id="ul"><a href="#servicios-section">Servicios</a></li>
+                <li id="ul"><a href="#contacto-section">Contacto</a></li>
+            </ul>
+        </nav>
+        <div id="cart-float">
+            🛒 <span id="cart-count">0</span> | L.<span id="cart-total">0.00</span>
+        </div>
+    </header>
+
+    <section id="hero">
+        <h2 class="hero-title">VIDRIERÍA LOPEZ</h2>
+        <p class="hero-subtitle">Ofrecemos los mejores productos y servicios en vidriería del mercado. Calidad y profesionalismo a tu alcance.</p>
+        <button class="products-button" onclick="document.getElementById('productos-section').scrollIntoView({behavior: 'smooth'})">Ver productos</button>
+    </section>
+
+    <section id="nosotros-section" class="info-section">
+        <h2 class="section-heading">Nosotros</h2>
+        <p class="nosotros-text">Con más de 20 años de experiencia, somos líderes en el mercado de vidriería en la ciudad de Potrerillos, Cortés, ofreciendo productos de alta calidad y un servicio excepcional. Nuestro compromiso es la satisfacción total del cliente.</p>
+        <div class="team-member">
+            <img src="img/team1.jpg" alt="Carlos A. Cruz">
+            <h3>Carlos A. Cruz</h3>
+            <p>Gerente General</p>
+        </div>
+    </section>
+
+    <section id="productos-section" class="info-section">
+        <h2 class="section-heading">Productos</h2>
+        <p class="section-subtitle">Descubre nuestra amplia gama de productos de alta calidad en diferentes categorías.</p>
+
+        <div id="product-list">
+        </div>
+    </section>
+
+    <section id="servicios-section" class="info-section services-bg">
+        <h2 class="section-heading">Servicios</h2>
+        <div class="container-services">
+            <div class="service-card">
+                <h3>Instalación</h3>
+                <p>Profesionales capacitados para una instalación perfecta, garantizando durabilidad y seguridad.</p>
+            </div>
+            <div class="service-card">
+                <h3>Mantenimiento</h3>
+                <p>Mantenimiento preventivo y correctivo para prolongar la vida útil de tus productos de vidrio y aluminio.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto-section" class="info-section">
+        <h2 class="section-heading">Contacto</h2>
+        <div class="contact-info">
+            <p><strong>Teléfono:</strong> <a href="tel:+50433893213">+504 3389-3213</a></p>
+            <p><strong>Email:</strong> <a href="mailto:carloscruz197527@gmail.com">carloscruz197527@gmail.com</a></p>
+            <h2>Ubicación y Contacto</h2>
+            <img src="img/mapa.png" alt="Ubicación de Vidriería Lopez en Google Maps" class="map-image">
+            <p>Visítanos en: Antigua Calle Principal CA-5, Potrerillos, Cortés, Barrio Barahona.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Vidriería Lopez. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-cart">&times;</span>
+            <h2>Mi Carrito de Compras</h2>
+
+            <div id="cart-items-list" class="cart-items-list">
+            </div>
+
+            <div class="cart-summary">
+                <p>Subtotal: <span id="cart-subtotal">L.0.00</span></p>
+                <h3>Total a pagar: <span id="modal-cart-total">L.0.00</span></h3>
+            </div>
+
+            <div class="cart-actions">
+                <button id="go-to-payment-btn" class="primary-btn">Proceder al Pago</button>
+                <button id="clear-cart-btn" class="secondary-btn">Vaciar Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-payment">&times;</span>
+            <h2>Confirmar Compra</h2>
+
+            <div id="checkout-cart-summary">
+                <h4>Productos en tu pedido:</h4>
+                <div id="checkout-cart-items-list">
+                </div>
+                <hr>
+                <p>Total Final: <strong id="payment-modal-total">L.0.00</strong></p>
+            </div>
+
+            <input type="text" id="buyerName" placeholder="Nombre completo" required><br><br>
+            <input type="email" id="buyerEmail" placeholder="Correo electrónico (Para factura/notificación)" required><br><br>
+
+            <button id="pay-btn" class="primary-btn">Confirmar y Pagar L.<span id="pay-btn-total">0.00</span></button>
+        </div>
+    </div>
+
+    <div id="payment-modal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close-payment" onclick="closePaymentModal()">&times;</span>
+            <h2>Enviar Pedido / Solicitud de Cotización</h2>
+            <input type="text" id="buyerName" placeholder="Nombre completo"><br>
+            <input type="email" id="buyerEmail" placeholder="Correo electrónico"><br>
+
+            <button id="pay-btn" class="primary-btn">Confirmar y Pagar</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
