@@ -29,7 +29,7 @@ header {
     position: relative;
     font-weight: 700;
     /* Ajustado para ser responsivo */
-    left: 0; 
+    left: 0;
     top: 0;
     color: #fff;
 }
@@ -54,11 +54,6 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #008CBA;
-}
-
-/* Ajustado para ser responsivo */
-#ul {
-    position: static;
 }
 
 
@@ -194,7 +189,8 @@ nav ul li a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin: 15px;
-    width: 280px; /* Ancho fijo para escritorio */
+    width: 280px;
+    /* Ancho fijo para escritorio */
     transition: transform 0.3s, box-shadow 0.3s;
     text-align: left;
     overflow: hidden;
@@ -339,8 +335,11 @@ nav ul li a:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
+/* ⭐ AJUSTE: Mejor definición para el modal de detalle/grande ⭐ */
+
 .modal-content.large-modal {
-    max-width: 800px; /* Ancho para el modal de Detalle */
+    max-width: 800px;
     width: 90%;
     margin: 5% auto;
 }
@@ -520,12 +519,19 @@ nav ul li a:hover {
     overflow-y: auto;
 }
 
+#payment-modal label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
 #payment-modal input[type="text"],
 #payment-modal input[type="email"] {
     width: calc(100% - 22px);
     padding: 10px;
-    margin: 8px 0;
-    display: inline-block;
+    margin: 8px 0 15px 0;
+    display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -576,125 +582,105 @@ nav ul li a:hover {
 
 
 /* ======================================================= */
+
+
 /* === AJUSTES DE DISEÑO RESPONSIVO (MOBILE FIRST) ======= */
+
+
 /* ======================================================= */
 
 
 /* 1. TABLETS y Móviles (Máx. 768px de ancho) */
+
 @media (max-width: 768px) {
-    
     /* --- HEADER Y NAV --- */
-    
     header {
         padding: 10px 15px;
-        flex-direction: row; 
+        flex-direction: row;
         justify-content: space-between;
     }
-
     /* Ocultamos el menú de navegación principal en móvil */
     nav ul {
         display: none;
     }
-
     .logo {
         font-size: 1.3em;
     }
-    
     #cart-float {
         padding: 6px 10px;
         top: 10px;
         right: 15px;
         font-size: 0.9em;
     }
-
     /* --- HERO --- */
-
     #hero {
-        height: 70vh; /* Reducimos la altura en móvil */
+        height: 70vh;
+        /* Reducimos la altura en móvil */
     }
-
     .hero-title {
         font-size: 2.5em;
     }
-
     .hero-subtitle {
         font-size: 1em;
         padding: 0 10px;
     }
-    
     /* --- SECCIONES GENERALES --- */
-
     .info-section {
         padding: 50px 5%;
     }
-    
     .section-heading {
         font-size: 2em;
     }
-
     /* --- PRODUCTOS --- */
-    
     .product-container {
         /* Apila las tarjetas verticalmente */
-        flex-direction: column; 
+        flex-direction: column;
         gap: 20px;
     }
-
     .card {
-        width: 100%; /* Las tarjetas ocupan todo el ancho */
+        width: 100%;
+        /* Las tarjetas ocupan todo el ancho */
         max-width: 400px;
         margin: 0 auto;
     }
-    
     /* --- SERVICIOS --- */
-
     .container-services {
         flex-direction: column;
         gap: 20px;
     }
-
     .service-card {
         max-width: 100%;
     }
-    
     /* --- MODAL DETALLE DE PRODUCTO --- */
-    
     .modal-content.large-modal {
         max-width: 90%;
         margin: 10% auto;
     }
-    
     #product-detail-content {
-        flex-direction: column; /* Apila imagen y descripción */
+        flex-direction: column;
+        /* Apila imagen y descripción */
         gap: 20px;
     }
-
     #product-detail-content img {
         width: 100%;
         max-height: 250px;
     }
-    
     .detail-info {
         width: 100%;
     }
-
     .detail-info .price {
         font-size: 1.2em;
     }
-    
     /* --- MODALES DE CARRITO Y PAGO --- */
-    
     .modal-content {
-        width: 90%; 
+        width: 90%;
         max-width: 90%;
         margin: 5% auto;
         padding: 20px;
     }
-
     .item-name {
         font-size: 0.85em;
     }
-
     .item-quantity-control {
         margin: 0 5px;
     }
