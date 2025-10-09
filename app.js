@@ -219,6 +219,7 @@ function renderProducts() {
             const div = document.createElement('div');
             div.className = 'card';
             div.setAttribute('data-id', p.id);
+            // ⭐ AQUI ESTÁ EL ONCLICK CORRECTO PARA LA IMAGEN ⭐
             div.innerHTML = `
                 <img src="${p.img}" alt="${p.name}" onclick="showProductDetail(${p.id})">
                 <div class="card-content">
@@ -236,7 +237,7 @@ function renderProducts() {
 
 
 // =======================================================
-// === 3. FUNCIONES DE DETALLE DEL PRODUCTO (CORREGIDAS) ===
+// === 3. FUNCIONES DE DETALLE DEL PRODUCTO ================
 // =======================================================
 
 /**
@@ -261,7 +262,7 @@ window.showProductDetail = function(id) {
         </div>
     `;
 
-    // Muestra el modal usando la variable global correcta
+    // ⭐ LINEA CLAVE: Asegura que el modal se muestre.
     if (productDetailModal) {
         productDetailModal.style.display = 'block';
     }
@@ -470,6 +471,7 @@ document.querySelector('.close-payment').onclick = () => paymentModal.style.disp
 window.onclick = (e) => {
     if (e.target == cartModal) cartModal.style.display = 'none';
     if (e.target == paymentModal) paymentModal.style.display = 'none';
+    // ⭐ LINEA CLAVE: Cierre del modal de detalle
     if (e.target == productDetailModal) productDetailModal.style.display = 'none';
 };
 
@@ -496,13 +498,14 @@ if (btnPay) {
     btnPay.onclick = () => {
         const name = document.getElementById('buyerName').value;
         const email = document.getElementById('buyerEmail').value;
+        const phone = document.getElementById('buyerPhone').value;
 
         // **IMPORTANTE: Cambia esta dirección por el correo fijo de tu empresa**
         const recipientEmail = 'vidrieria_lopez_pedidos@ejemplo.com';
 
         // 1. Validaciones
-        if (!name || !email) {
-            alert('ERROR: Complete el Nombre y el Correo Electrónico para enviar el pedido.');
+        if (!name || !email || !phone) {
+            alert('ERROR: Complete el Nombre, Correo Electrónico y el Teléfono para enviar el pedido.');
             return;
         }
 
@@ -518,7 +521,8 @@ if (btnPay) {
         emailBody += `Tengo interés en realizar un pedido con los siguientes productos. Por favor, contáctenme para confirmar disponibilidad y método de pago.\n\n`;
         emailBody += `--- DATOS DEL CLIENTE ---\n`;
         emailBody += `Nombre: ${name}\n`;
-        emailBody += `Correo: ${email}\n\n`;
+        emailBody += `Correo: ${email}\n`;
+        emailBody += `Teléfono: ${phone}\n\n`;
         emailBody += `--- DETALLE DEL PEDIDO ---\n`;
 
         cart.forEach(item => {
