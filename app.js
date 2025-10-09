@@ -501,7 +501,7 @@ if (btnPay) {
         const phone = document.getElementById('buyerPhone').value;
 
         // **IMPORTANTE: Cambia esta dirección por el correo fijo de tu empresa**
-        const recipientEmail = 'vidrieria_lopez_pedidos@ejemplo.com';
+        const recipientEmail = 'carloscruz197527@gmail.com';
 
         // 1. Validaciones
         if (!name || !email || !phone) {
@@ -565,3 +565,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartUI();
 });
+
