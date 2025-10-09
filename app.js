@@ -471,7 +471,7 @@ document.querySelector('.close-payment').onclick = () => paymentModal.style.disp
 window.onclick = (e) => {
     if (e.target == cartModal) cartModal.style.display = 'none';
     if (e.target == paymentModal) paymentModal.style.display = 'none';
-    // ⭐ LINEA CLAVE: Cierre del modal de detalle
+    // Cierre del modal de detalle
     if (e.target == productDetailModal) productDetailModal.style.display = 'none';
 };
 
@@ -496,14 +496,15 @@ if (btnClearCart) {
 
 if (btnPay) {
     btnPay.onclick = () => {
+        // ⭐ 1. CAPTURAR VALORES DE INPUTS ⭐
         const name = document.getElementById('buyerName').value;
         const email = document.getElementById('buyerEmail').value;
-        const phone = document.getElementById('buyerPhone').value;
+        const phone = document.getElementById('buyerPhone').value; // <-- Aquí se captura el teléfono
 
         // **IMPORTANTE: Cambia esta dirección por el correo fijo de tu empresa**
-        const recipientEmail = 'carloscruz197527@gmail.com';
+        const recipientEmail = 'vidrieria_lopez_pedidos@ejemplo.com';
 
-        // 1. Validaciones
+        // 2. Validaciones
         if (!name || !email || !phone) {
             alert('ERROR: Complete el Nombre, Correo Electrónico y el Teléfono para enviar el pedido.');
             return;
@@ -514,7 +515,7 @@ if (btnPay) {
             return;
         }
 
-        // 2. Construir el cuerpo del mensaje
+        // 3. Construir el cuerpo del mensaje
         const total = cart.reduce((s, c) => s + c.price * c.qty, 0);
 
         let emailBody = `¡Hola Vidriería Lopez!\n\n`;
@@ -522,6 +523,7 @@ if (btnPay) {
         emailBody += `--- DATOS DEL CLIENTE ---\n`;
         emailBody += `Nombre: ${name}\n`;
         emailBody += `Correo: ${email}\n`;
+        // ⭐ LÍNEA CLAVE: El teléfono se añade al cuerpo del correo ⭐
         emailBody += `Teléfono: ${phone}\n\n`;
         emailBody += `--- DETALLE DEL PEDIDO ---\n`;
 
@@ -533,16 +535,16 @@ if (btnPay) {
         emailBody += `\nGracias.`;
 
 
-        // 3. Crear el enlace mailto:
+        // 4. Crear el enlace mailto:
         const subject = encodeURIComponent(`NUEVO PEDIDO WEB - Cliente: ${name}`);
         const body = encodeURIComponent(emailBody);
 
         const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
 
-        // 4. Abrir el cliente de correo del usuario
+        // 5. Abrir el cliente de correo del usuario
         window.location.href = mailtoLink;
 
-        // 5. Retroalimentación y limpieza
+        // 6. Retroalimentación y limpieza
         setTimeout(() => {
             alert('Su pedido ha sido preparado. Su aplicación de correo se abrirá para que pueda ENVIAR el mensaje. ¡Recuerde presionar ENVIAR en su correo!');
 
@@ -555,7 +557,6 @@ if (btnPay) {
     };
 }
 
-
 // =======================================================
 // === 6. INICIALIZACIÓN =================================
 // =======================================================
@@ -565,4 +566,3 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartUI();
 });
-
