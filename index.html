@@ -14,11 +14,11 @@
         <nav>
             <h1 class="logo">VIDRIERÍA LOPEZ</h1>
             <ul>
-                <li id="ul"><a href="#hero">Inicio</a></li>
-                <li id="ul"><a href="#nosotros-section">Nosotros</a></li>
-                <li id="ul"><a href="#productos-section">Productos</a></li>
-                <li id="ul"><a href="#servicios-section">Servicios</a></li>
-                <li id="ul"><a href="#contacto-section">Contacto</a></li>
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#nosotros-section">Nosotros</a></li>
+                <li><a href="#productos-section">Productos</a></li>
+                <li><a href="#servicios-section">Servicios</a></li>
+                <li><a href="#contacto-section">Contacto</a></li>
             </ul>
         </nav>
         <div id="cart-float">
@@ -112,8 +112,14 @@
                 <p>Total Estimado: <strong id="payment-modal-total">L.0.00</strong></p>
             </div>
 
-            <input type="text" id="buyerName" placeholder="Nombre completo" required><br>
-            <input type="email" id="buyerEmail" placeholder="Correo electrónico (Para contacto)" required><br>
+            <label for="buyerName">Nombre Completo:</label>
+            <input type="text" id="buyerName" required>
+
+            <label for="buyerEmail">Correo Electrónico:</label>
+            <input type="email" id="buyerEmail" required>
+
+            <label for="buyerPhone">Número de Teléfono:</label>
+            <input type="text" id="buyerPhone" required>
 
             <button id="pay-btn" class="primary-btn">Confirmar y Enviar Pedido L.<span id="pay-btn-total">0.00</span></button>
         </div>
